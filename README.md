@@ -1,6 +1,7 @@
 # claude-code-beep 🔊
 
 Claude Code 事件提示音：在 **需要你授权**、**任务完成**、**后台子任务完成** 时播放提示音，让你后台跑任务时不用一直盯屏幕，声音一响就知道该回来了。
+当然这个功能完全可以让Agent自己帮你实现，因为我这个就是Cladue Code自己做的XD。
 
 适用于 **Windows + Claude Code**（CLI 或 VS Code 扩展均可）。
 
