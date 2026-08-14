@@ -1,12 +1,11 @@
-# claude-code-beep - Claude Code event notification sound (Windows, VS Code extension tested)
+# claude-code-beep - Claude Code event notification sound (Windows)
 #
-# Usage:
-#   powershell -NoProfile -NonInteractive -File cc-beep.ps1 <Sound.wav> [Count]
+# Usage: powershell -NoProfile -NonInteractive -File cc-beep.ps1 <Sound.wav> [Count]
 #   e.g. powershell -NoProfile -NonInteractive -File cc-beep.ps1 "Windows Notify.wav" 3
 #
-# Env vars (optional overrides):
-#   CC_BEEP_MEDIA  sound directory  (default C:/Windows/Media)
-#   CC_BEEP_LOG    log file path    (default %USERPROFILE%\.cc-beep\cc-beep.log)
+# Env vars (optional):
+#   CC_BEEP_MEDIA  sound directory (default C:/Windows/Media)
+#   CC_BEEP_LOG    log file path   (default %USERPROFILE%\.cc-beep\cc-beep.log)
 param([string]$Sound = "tada.wav", [int]$Count = 1)
 
 $mediaDir = if ($env:CC_BEEP_MEDIA) { $env:CC_BEEP_MEDIA } else { "C:/Windows/Media" }
@@ -19,7 +18,7 @@ if ($env:CC_BEEP_LOG) {
 }
 $wav = Join-Path $mediaDir $Sound
 
-# Append one log line per invocation (diagnostics: did the hook fire?)
+# one log line per play (diagnostics)
 Add-Content -Path $log -Value ("{0}  sound={1} x{2}  cwd={3}" -f (Get-Date -Format 'yyyy-MM-dd HH:mm:ss'), $Sound, $Count, (Get-Location).Path) -Encoding UTF8
 
 if (-not (Test-Path $wav)) {
